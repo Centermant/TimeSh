@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ-панель</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Админ-панель</h1>
+            <nav>
+                <a href="index.html">Главная</a>
+                <a href="admin.html">Админ-панель</a>
+            </nav>
+        </header>
+
+        <div id="adminAuthInfo" style="display: none;">
+            <p>Добро пожаловать, <span id="adminUserName"></span>!</p>
+            <button id="adminLogoutBtn">Выйти</button>
+        </div>
+        <div id="adminLoginForm" style="display: none;">
+            <h2>Вход (Админ)</h2>
+            <form id="adminLoginFormElement">
+                <input type="text" id="adminUsername" placeholder="Логин" required>
+                <input type="password" id="adminPassword" placeholder="Пароль" required>
+                <button type="submit">Войти</button>
+            </form>
+            <p id="adminLoginError" class="error-message" style="display: none;"></p>
+        </div>
+
+        <div id="adminPanel" style="display: none;">
+            <h2>Управление</h2>
+
+            <!-- Меню вкладок -->
+            <div class="tab-menu">
+                <button class="tab-button active" data-tab="employees">Сотрудники</button>
+                <button class="tab-button" data-tab="departments">Подразделения</button>
+                <button class="tab-button" data-tab="positions">Должности</button>
+                <button class="tab-button" data-tab="assignments">Привязка должностей</button>
+                <button class="tab-button" data-tab="reports">Отчеты</button>
+            </div>
+
+            <!-- Контент вкладок -->
+            <div id="employeesTab" class="tab-content">
+                <h3>Сотрудники</h3>
+                <div class="section-form">
+                    <h4>Добавить сотрудника</h4>
+                    <form id="addEmployeeForm">
+                        <input type="text" id="empId" placeholder="Табельный номер" required>
+                        <input type="text" id="fullName" placeholder="ФИО" required>
+                        <input type="date" id="dateOfBirth" required>
+                        <input type="text" id="username" placeholder="Логин" required>
+                        <input type="password" id="password" placeholder="Пароль" required>
+                        <select id="role" required>
+                            <option value="employee">Сотрудник</option>
+                            <option value="admin">Администратор</option>
+                        </select>
+                        <button type="submit">Добавить</button>
+                    </form>
+                </div>
+                <div class="section-list">
+                    <h4>Список сотрудников</h4>
+                    <div id="employeesList">
+                        <!-- Здесь будут отображаться сотрудники -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="departmentsTab" class="tab-content" style="display: none;">
+                <h3>Подразделения</h3>
+                <div class="section-form">
+                    <h4>Добавить подразделение</h4>
+                    <form id="addDepartmentForm">
+                        <input type="text" id="departmentGuid" placeholder="GUID" required>
+                        <input type="text" id="departmentName" placeholder="Название" required>
+                        <button type="submit">Добавить</button>
+                    </form>
+                </div>
+                <div class="section-list">
+                    <h4>Список подразделений</h4>
+                    <div id="departmentsList">
+                        <!-- Здесь будут отображаться подразделения -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="positionsTab" class="tab-content" style="display: none;">
+                <h3>Должности</h3>
+                <div class="section-form">
+                    <h4>Добавить должность</h4>
+                    <form id="addPositionForm">
+                        <input type="text" id="positionId" placeholder="ID должности" required>
+                        <input type="text" id="positionTitle" placeholder="Название должности" required>
+                        <input type="number" id="totalRate" placeholder="Общее количество ставок" step="0.01" required>
+                        <!-- Новое поле выбора подразделения -->
+                        <select id="departmentGuid" required>
+                            <option value="">Выберите подразделение</option>
+                            <!-- Опции будут заполнены динамически через JavaScript -->
+                        </select>
+                        <button type="submit">Добавить</button>
+                    </form>
+                </div>
+                <div class="section-list">
+                    <h4>Список должностей</h4>
+                    <div id="positionsList">
+                        <!-- Здесь будут отображаться должности -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="assignmentsTab" class="tab-content" style="display: none;">
+                <h3>Привязка должностей</h3>
+                <div class="section-form">
+                    <h4>Привязать сотрудника к должности</h4>
+                    <form id="assignPositionForm">
+                        <select id="assignEmpId" required></select>
+                        <select id="assignPosId" required></select>
+                        <input type="number" id="assignedRate" placeholder="Количество ставок" step="0.01" required>
+                        <button type="submit">Привязать</button>
+                    </form>
+                    <div id="assignPositionError" class="error-message" style="display: none;"></div>
+                </div>
+                <div class="section-list">
+                    <h4>Список привязок</h4>
+                    <div id="assignmentsList">
+                        <!-- Здесь будут отображаться привязки -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="reportsTab" class="tab-content" style="display: none;">
+                <h3>Отчеты</h3>
+                <div class="section-form">
+                    <h4>Просмотр отчета за месяц</h4>
+                    <form id="reportForm">
+                        <input type="month" id="reportMonth" required>
+                        <button type="submit">Получить отчет</button>
+                    </form>
+                </div>
+                <div class="section-list">
+                    <h4>Отчет</h4>
+                    <div id="reportDisplay">
+                        <!-- Здесь будет отображаться отчет -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/admin.js"></script>
+</body>
+</html>

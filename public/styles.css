@@ -1,0 +1,202 @@
+/* public/styles.css */
+body {
+    font-family: sans-serif;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.container {
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #ddd;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #007bff;
+    margin-left: 1rem;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+form {
+    background: #fff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+input, select, button {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+}
+
+.employee-card, .report-row {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.report-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.position-item {
+    background: #e9ecef;
+    padding: 0.5rem;
+    margin: 0.25rem 0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.admin-section h3 {
+    margin-top: 0;
+}
+
+/* Стиль для выбранной должности */
+.position-item.selected {
+    background-color: #cce5ff;
+    border: 2px solid #007bff;
+}
+
+/* Меню вкладок */
+.tab-menu {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    padding: 0.5rem 1rem;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333; /* Текст темнее */
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.tab-button:hover {
+    background: #e0e0e0;
+}
+
+.tab-button.active {
+    background: #fff;
+    border-bottom: 2px solid #007bff;
+    color: #007bff; /* Активная вкладка выделяется синим */
+    font-weight: bold;
+}
+
+.tab-content {
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.section-form {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.section-list {
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Стиль для выбранной должности */
+.position-item.selected {
+    background-color: #cce5ff;
+    border: 2px solid #007bff;
+}
+
+.delete-btn {
+    background: #dc3545; /* Красный цвет */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem; /* Уменьшаем отступы */
+    cursor: pointer;
+    font-size: 0.75rem; /* Уменьшаем размер шрифта */
+    font-weight: bold;
+    min-width: 60px; /* Фиксируем минимальную ширину */
+    width: 60px; /* Фиксируем ширину */
+    text-align: center; /* Центрируем текст */
+    display: inline-block; /* Гарантируем, что width работает */
+    box-sizing: border-box; /* Учитываем padding при расчете ширины */
+}
+
+.delete-btn:hover {
+    background: #c82333; /* Темнее при наведении */
+}
+
+/* Стиль для выбранной должности */
+.position-item.selected {
+    background-color: #cce5ff;
+    border: 2px solid #007bff;
+}

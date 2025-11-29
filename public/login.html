@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Вход в систему</h1>
+        <div id="loginForm">
+            <h2>Вход</h2>
+            <form id="loginFormElement">
+                <input type="text" id="username" placeholder="Логин" required>
+                <input type="password" id="password" placeholder="Пароль" required>
+                <button type="submit">Войти</button>
+            </form>
+            <p id="loginError" class="error-message" style="display: none;"></p>
+            <p><a href="index.html">На главную</a></p>
+        </div>
+    </div>
+    <script>
+        // Простой скрипт для перенаправления на index.html после успешного входа
+        document.getElementById('loginFormElement').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    // Сохраняем токен в localStorage
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    // Перенаправляем на главную
+                    window.location.href = 'index.html';
+                } else {
+                    const errorData = await response.json();
+                    document.getElementById('loginError').textContent = errorData.error;
+                    document.getElementById('loginError').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                document.getElementById('loginError').textContent = 'Ошибка сети';
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
