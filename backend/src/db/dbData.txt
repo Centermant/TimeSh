@@ -1,0 +1,5 @@
+PostgreSQL
+db
+devuser
+devpass
+timesheetdb
